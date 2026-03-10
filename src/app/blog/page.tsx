@@ -1,6 +1,7 @@
 import React from "react";
 
-const BlogPage = () => {
+const BlogPage = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 4000));
   return <div>This is the BlogPage</div>;
 };
 
