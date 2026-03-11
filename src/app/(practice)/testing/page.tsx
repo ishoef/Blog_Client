@@ -1,7 +1,7 @@
 export default function TestingPage() {
   return (
     <div className="flex bg-gray-100">
-      <div className="w-full h-100 bg-white shadow-xl rounded-2xl flex items-center justify-center text-2xl font-semibold">
+      <div className="w-full h-100 bg-yellow-100 shadow-xl rounded-2xl flex items-center justify-center text-2xl font-semibold">
         Testing Page
       </div>
     </div>
