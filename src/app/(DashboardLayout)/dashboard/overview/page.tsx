@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-export default function Dashobard({}: Props) {
+export default function DashboardOverview() {
   const stats = [
     { id: 1, title: "Total Posts", value: 42 },
     { id: 2, title: "Draft Posts", value: 6 },
@@ -105,5 +103,5 @@ export default function Dashobard({}: Props) {
         </div>
       </div>
     </div>
-  );;
+  );
 }
