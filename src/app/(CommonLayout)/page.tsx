@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+import { userService } from "@/services/user.service";
 
-export default async function Home() {
-  const session = await authClient.getSession();
-  console.log(session);
+export default async function HomePage() {
+  const { data } = await userService.getSession();
+
+  console.log("User", data.user);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
