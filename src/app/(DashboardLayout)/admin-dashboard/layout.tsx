@@ -20,7 +20,6 @@ import { userService } from "@/services/user.service";
 export default async function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const { data } = await userService.getSession();
 
   return (
     <SidebarProvider>

@@ -5,9 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { userService } from "@/services/user.service";
 import Footer from "@/components/layout/Footer";
+import { blogService } from "@/services/blog.service";
 
 export default async function HomePage() {
-  const { data } = await userService.getSession();
+  // const { data } = await userService.getSession();
+  // console.log(data);
 
   return (
     <main className="bg-background text-foreground">

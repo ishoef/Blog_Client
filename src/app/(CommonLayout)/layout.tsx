@@ -9,7 +9,7 @@ export default function CommonLayout({
     <div>
       {" "}
       <Navbar />
-      {children}
+      <div className="min-h-screen">{children}</div>
       {/* FOOTER */}
       <Footer />
     </div>
