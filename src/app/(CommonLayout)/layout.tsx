@@ -8,7 +8,9 @@ export default function CommonLayout({
   return (
     <div>
       {" "}
-      <Navbar />
+      <div className=" sticky top-0 bg-background z-10">
+        <Navbar />
+      </div>
       <div className="min-h-screen">{children}</div>
       {/* FOOTER */}
       <Footer />

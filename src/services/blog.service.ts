@@ -48,8 +48,6 @@ export const blogService = {
       const res = await fetch(url.toString(), config);
       const response = await res.json();
 
-      
-
       // if (!response.success) {
       //   return {
       //     data: [],
@@ -66,6 +64,19 @@ export const blogService = {
         error: {
           message: "Somthing Went Wrong from 'blogService.getBlogPosts'",
         },
+      };
+    }
+  },
+
+  getBlogById: async function (id: string) {
+    try {
+      const res = await fetch(`${API_URL}/posts/${id}`);
+      const data = await res.json();
+      return { data: data, error: null };
+    } catch (err) {
+      return {
+        data: null,
+        error: { message: "Something went wrong fro getBlogById" },
       };
     }
   },

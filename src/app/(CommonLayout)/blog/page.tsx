@@ -15,7 +15,7 @@ const BlogPage = async () => {
   const blogs = data?.data || [];
   return (
     <div className="container mx-auto py-16">
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-5 px-4">
         {blogs.map((blog: BlogPost) => (
           <BlogCard key={blog.id} post={blog} />
         ))}

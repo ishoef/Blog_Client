@@ -32,7 +32,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  console.log("From Proxy", data);
+  // console.log("From Proxy", data);
   return NextResponse.next();
 }
 
