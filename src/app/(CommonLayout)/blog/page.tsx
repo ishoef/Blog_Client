@@ -4,14 +4,15 @@ import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
 import React from "react";
 
-export const dynamic = "force-dynamic";
-
 const BlogPage = async () => {
-  const data = await blogService.getBlogPosts();
-  const blogs = data?.data;
-
-  console.log(blogs);
-
+  const data = await blogService.getBlogPosts(
+    {},
+    {
+      // cache: "no-store",
+      revalidate: 10,
+    },
+  );
+  const blogs = data?.data || [];
   return (
     <div className="container mx-auto py-16">
       <div className="grid grid-cols-3 gap-5">
