@@ -1,5 +1,3 @@
-"use client";
-
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -28,6 +26,9 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
+import { userService } from "@/services/user.service";
+import ProfileAvatar from "./ProfileAvatar";
+import { AvatarDropdown } from "./AvatarDropdown";
 
 interface MenuItem {
   title: string;
@@ -59,7 +60,7 @@ interface Navbar1Props {
   };
 }
 
-const Navbar = ({
+const Navbar = async ({
   logo = {
     url: "/",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
@@ -149,6 +150,9 @@ const Navbar = ({
   },
   className,
 }: Navbar1Props) => {
+  const { data } = await userService.getSession();
+  console.log("from navbar", data);
+
   return (
     <section className={cn("py-4", className)}>
       <div className="container mx-auto">
@@ -175,13 +179,21 @@ const Navbar = ({
             </div>
           </div>
           <div className="flex gap-2">
+            {/* <ProfileAvatar /> */}
             <ModeToggle />
-            <Button asChild variant="outline" size="sm">
-              <Link href={auth.login.url}>{auth.login.title}</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href={auth.signup.url}>{auth.signup.title}</Link>
-            </Button>
+            {data?.session?.token ? (
+              <AvatarDropdown />
+            ) : (
+              <>
+                <Button asChild variant="outline" size="sm">
+                  <Link href={auth.login.url}>{auth.login.title}</Link>
+                </Button>
+
+                <Button asChild size="sm">
+                  <Link href={auth.signup.url}>{auth.signup.title}</Link>
+                </Button>
+              </>
+            )}
           </div>
         </nav>
 
@@ -198,7 +210,7 @@ const Navbar = ({
             </a>
 
             <div className="flex gap-2">
-              <ModeToggle/>
+              <ModeToggle />
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline" size="icon">
@@ -228,12 +240,23 @@ const Navbar = ({
                     </Accordion>
 
                     <div className="flex flex-col gap-3">
-                      <Button asChild variant="outline">
-                        <a href={auth.login.url}>{auth.login.title}</a>
-                      </Button>
-                      <Button asChild>
-                        <a href={auth.signup.url}>{auth.signup.title}</a>
-                      </Button>
+                      {data?.session?.token ? (
+                        <AvatarDropdown />
+                      ) : (
+                        <>
+                          <Button asChild variant="outline" size="sm">
+                            <Link href={auth.login.url}>
+                              {auth.login.title}
+                            </Link>
+                          </Button>
+
+                          <Button asChild size="sm">
+                            <Link href={auth.signup.url}>
+                              {auth.signup.title}
+                            </Link>
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </SheetContent>

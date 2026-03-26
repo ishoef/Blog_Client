@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import { SearchForm } from "@/components/modules/dashboard/search-form"
-import { VersionSwitcher } from "@/components/modules/dashboard/version-switcher"
+import { SearchForm } from "@/components/modules/dashboard/search-form";
+import { VersionSwitcher } from "@/components/modules/dashboard/version-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -13,8 +13,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import Link from "next/link"
+} from "@/components/ui/sidebar";
+import Link from "next/link";
 
 // This is sample data.
 const data = {
@@ -30,13 +30,17 @@ const data = {
           isActive: true,
         },
         {
+          title: "Create Blog",
+          url: "/dashboard/create-blog",
+        },
+        {
           title: "Payments",
           url: "/dashboard/payments",
         },
         {
           title: "Home",
-          url: "/"
-        }
+          url: "/",
+        },
       ],
     },
   ],
@@ -73,5 +77,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

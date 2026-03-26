@@ -13,10 +13,11 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useForm } from "@tanstack/react-form";
-
 import * as Z from "zod";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
 
 const formSchema = Z.object({
   password: Z.string().min(8, "Minimum length is 8"),
@@ -27,6 +28,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
+
   // google login
   const handleGoogleLogin = async () => {
     const data = authClient.signIn.social({
@@ -63,6 +66,7 @@ export function LoginForm({
         }
 
         toast.success("User Loged In Successfully", { id: toastId });
+        router.push("/");
       } catch (error) {
         toast.error("Something went wrong, please try again", { id: toastId });
       }
