@@ -8,8 +8,11 @@ import { BlogPost } from "@/types";
 
 export async function generateStaticParams() {
   const { data } = await blogService.getBlogPosts();
-    return data?.map((blog: BlogPost) => ({ id: blog.id }))
-        // .splice(0, 2);
+
+  if (!data) return [];
+
+  return data?.map((blog: BlogPost) => ({ id: blog.id.toString() }));
+  // .splice(0, 2);
 }
 
 export default async function BlogDetails({
@@ -55,7 +58,7 @@ export default async function BlogDetails({
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-8">
-        {blog.tags.map((tag: string) => (
+        {blog.tags?.map((tag: string) => (
           <Badge key={tag} variant="secondary">
             #{tag}
           </Badge>
