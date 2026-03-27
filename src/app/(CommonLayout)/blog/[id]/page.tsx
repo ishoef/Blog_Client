@@ -8,7 +8,7 @@ import { BlogPost } from "@/types";
 
 export async function generateStaticParams() {
   const { data } = await blogService.getBlogPosts();
-    return data.map((blog: BlogPost) => ({ id: blog.id }))
+    return data?.map((blog: BlogPost) => ({ id: blog.id }))
         // .splice(0, 2);
 }
 

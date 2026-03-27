@@ -1,5 +1,4 @@
 import BlogCard from "@/components/modules/homePage/blogCard";
-import wait from "@/lib/wait";
 import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
 import React from "react";
