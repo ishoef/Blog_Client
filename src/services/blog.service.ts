@@ -11,6 +11,7 @@ interface GetBlogsParams {
   isFeatured?: boolean;
   search?: string;
   status?: string;
+  page?: string;
 }
 
 interface ServiceOptions {

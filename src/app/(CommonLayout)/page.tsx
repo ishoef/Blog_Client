@@ -8,12 +8,18 @@ import Footer from "@/components/layout/Footer";
 import { blogService } from "@/services/blog.service";
 
 export default async function HomePage() {
-  
-
   return (
     <main className="bg-background text-foreground">
       {/* HERO */}
       <section className="container mx-auto py-24 px-6 text-center">
+        <div className="flex justify-center">
+          <img
+            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1920&q=100"
+            alt="Blog illustration"
+            className="w-full max-w-md rounded-2xl shadow-lg"
+          />
+        </div>
+
         <h1 className="text-5xl font-bold tracking-tight">
           Discover Stories, Ideas & Inspiration
         </h1>

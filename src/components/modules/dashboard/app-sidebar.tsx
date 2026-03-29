@@ -34,8 +34,8 @@ const data = {
           url: "/dashboard/create-blog",
         },
         {
-          title: "Payments",
-          url: "/dashboard/payments",
+          title: "History",
+          url: "/dashboard/history",
         },
         {
           title: "Home",
