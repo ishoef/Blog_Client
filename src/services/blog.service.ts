@@ -1,4 +1,5 @@
 import { env } from "@/env";
+import { cookies } from "next/headers";
 
 const API_URL = env.API_URL;
 
@@ -15,6 +16,12 @@ interface GetBlogsParams {
 interface ServiceOptions {
   cache?: RequestCache;
   revalidate?: number;
+}
+
+export interface BlogData {
+  title: string;
+  content: string;
+  tags?: string[];
 }
 
 export const blogService = {
@@ -45,8 +52,10 @@ export const blogService = {
         config.next = { revalidate: options.revalidate };
       }
 
+      config.next = { ...config.next, tags: ["blogPosts"] };
+
       const res = await fetch(url.toString(), config);
-      const response = await res.json();
+      const data = await res.json();
 
       // if (!response.success) {
       //   return {
@@ -57,7 +66,7 @@ export const blogService = {
       //   };
       // }
 
-      return response;
+      return { data: data, error: null };
     } catch (err) {
       return {
         data: null,
@@ -77,6 +86,43 @@ export const blogService = {
       return {
         data: null,
         error: { message: "Something went wrong fro getBlogById" },
+      };
+    }
+  },
+
+  // Create Post
+  createBlogPost: async (blogData: BlogData) => {
+    try {
+      const cookieStore = await cookies();
+
+      const res = await fetch(`${API_URL}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        body: JSON.stringify(blogData),
+      });
+
+      const data = await res.json();
+
+      if (data.error) {
+        return {
+          data: null,
+          error: {
+            messae: data.error || "Error: Post not Created",
+          },
+        };
+      }
+
+      return { data: data.data, error: null };
+    } catch (error) {
+      return {
+        data: null,
+        error: {
+          message:
+            "Somthing went wrong and coming from blogService.crateBlogPost",
+        },
       };
     }
   },
